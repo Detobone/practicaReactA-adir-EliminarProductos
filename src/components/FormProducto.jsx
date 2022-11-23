@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { postResquest } from "../utilities/postResquest";
 import PropTypes from "prop-types";
+import { getProduct } from "../utilities/getRequest";
 
 export const FormProducto = ({ setProductos }, { productos }) => {
   const url = "http://localhost:5173/api/products";
@@ -20,26 +21,17 @@ export const FormProducto = ({ setProductos }, { productos }) => {
   const onChange = (e) => {
     const { value, name } = e.target;
     setAddNewProduct({ ...addNewProduct, [name]: value });
-    console.log("Evento", e);
-  };
-
-  const getProduct = async () => {
-    const getProductosList = await fetch(url);
-    const json = await getProductosList.json();
-    const { products } = json;
-
-    console.log("PRODUCTOS", products);
-    setProductos(products);
+    // console.log("Evento", e);
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
     postResquest(addNewProduct);
-    getProduct();
+    getProduct(setProductos, url);
   };
 
   useEffect(() => {
-    getProduct();
+    getProduct(setProductos, url);
   }, [productos]);
 
   return (

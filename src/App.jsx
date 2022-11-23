@@ -3,11 +3,10 @@ import { FormProducto } from "./components/FormProducto";
 import "./App.css";
 import { useMemo, useState } from "react";
 function App() {
-  // const [first, setfirst] = useState();
   const [productos, setProductos] = useState();
-  const handlerFirst = (value) => {
-    setfirst(value);
-  };
+  // const handlerProductos = (value) => {
+  //   setProductos(value);
+  // };
 
   return (
     <>
